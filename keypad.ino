@@ -10,8 +10,8 @@
     {'7', '8', '9', 'C'},
     {'*', '0', '#', 'D'}
   };
-  byte rowPins[ROWS] = {16, 5, 4, 18}; // Connect to the row pinouts of the keypad
-  byte colPins[COLS] = {19, 23, 13, 14}; // Connect to the column pinouts of the keypad
+  byte rowPins[ROWS] = {13, 14, 4, 5}; // Connect to the row pinouts of the keypad
+  byte colPins[COLS] = {16, 17, 18, 19}; // Connect to the column pinouts of the keypad
 
   Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
