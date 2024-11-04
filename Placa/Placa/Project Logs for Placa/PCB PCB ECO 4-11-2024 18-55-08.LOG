@@ -1,0 +1,10 @@
+Added Component: Designator=J?(SIP2)
+Added Component: Designator=R?(RES400)
+Added Pin To Net: NetName=+5V Pin=J?-1
+Added Pin To Net: NetName=D23 Pin=J?-2
+Added Pin To Net: NetName=GND Pin=R?-1
+Added Pin To Net: NetName=D23 Pin=R?-2
+Added Member To Class: ClassName=esquema Member=Component J4 A4988-B
+Added Member To Class: ClassName=esquema Member=Component J? CON2
+Added Member To Class: ClassName=esquema Member=Component R2 RES
+Added Member To Class: ClassName=esquema Member=Component R? RES

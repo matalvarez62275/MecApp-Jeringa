@@ -1,0 +1,74 @@
+Removed Pin From Net: NetName=EN Pin=J5-1
+Removed Pin From Net: NetName=VP Pin=J5-2
+Removed Pin From Net: NetName=VN Pin=J5-3
+Removed Pin From Net: NetName=D34 Pin=J5-4
+Removed Pin From Net: NetName=D35 Pin=J5-5
+Removed Pin From Net: NetName=D32 Pin=J5-6
+Removed Pin From Net: NetName=D33 Pin=J5-7
+Removed Pin From Net: NetName=D25 Pin=J5-8
+Removed Pin From Net: NetName=D26 Pin=J5-9
+Removed Pin From Net: NetName=D27 Pin=J5-10
+Removed Pin From Net: NetName=D23 Pin=J6-1
+Removed Pin From Net: NetName=D22 Pin=J6-2
+Removed Pin From Net: NetName=TX0 Pin=J6-3
+Removed Pin From Net: NetName=RX0 Pin=J6-4
+Removed Pin From Net: NetName=D21 Pin=J6-5
+Removed Pin From Net: NetName=D19 Pin=J6-6
+Removed Pin From Net: NetName=D18 Pin=J6-7
+Removed Pin From Net: NetName=D5 Pin=J6-8
+Removed Pin From Net: NetName=TX2 Pin=J6-9
+Removed Pin From Net: NetName=RX2 Pin=J6-10
+Removed Pin From Net: NetName=D14 Pin=J9-1
+Removed Pin From Net: NetName=D12 Pin=J9-2
+Removed Pin From Net: NetName=D13 Pin=J9-3
+Removed Pin From Net: NetName=GND Pin=J9-4
+Removed Pin From Net: NetName=+5V Pin=J9-5
+Removed Pin From Net: NetName=D4 Pin=J10-1
+Removed Pin From Net: NetName=D2 Pin=J10-2
+Removed Pin From Net: NetName=D15 Pin=J10-3
+Removed Pin From Net: NetName=GND Pin=J10-4
+Removed Pin From Net: NetName=3V3 Pin=J10-5
+Removed Member From Class: ClassName=esquema Member=J5
+Removed Member From Class: ClassName=esquema Member=J6
+Removed Member From Class: ClassName=esquema Member=J9
+Removed Member From Class: ClassName=esquema Member=J10
+Added Component: Designator=P1(HDR1X15)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=P2(HDR1X15)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=EN Pin=P1-1
+Added Pin To Net: NetName=VP Pin=P1-2
+Added Pin To Net: NetName=VN Pin=P1-3
+Added Pin To Net: NetName=D34 Pin=P1-4
+Added Pin To Net: NetName=D35 Pin=P1-5
+Added Pin To Net: NetName=D32 Pin=P1-6
+Added Pin To Net: NetName=D33 Pin=P1-7
+Added Pin To Net: NetName=D25 Pin=P1-8
+Added Pin To Net: NetName=D26 Pin=P1-9
+Added Pin To Net: NetName=D27 Pin=P1-10
+Added Pin To Net: NetName=D14 Pin=P1-11
+Added Pin To Net: NetName=D12 Pin=P1-12
+Added Pin To Net: NetName=D13 Pin=P1-13
+Added Pin To Net: NetName=GND Pin=P1-14
+Added Pin To Net: NetName=+5V Pin=P1-15
+Added Pin To Net: NetName=D23 Pin=P2-1
+Added Pin To Net: NetName=D22 Pin=P2-2
+Added Pin To Net: NetName=TX0 Pin=P2-3
+Added Pin To Net: NetName=RX0 Pin=P2-4
+Added Pin To Net: NetName=D21 Pin=P2-5
+Added Pin To Net: NetName=D19 Pin=P2-6
+Added Pin To Net: NetName=D18 Pin=P2-7
+Added Pin To Net: NetName=D5 Pin=P2-8
+Added Pin To Net: NetName=TX2 Pin=P2-9
+Added Pin To Net: NetName=RX2 Pin=P2-10
+Added Pin To Net: NetName=D4 Pin=P2-11
+Added Pin To Net: NetName=D2 Pin=P2-12
+Added Pin To Net: NetName=D15 Pin=P2-13
+Added Pin To Net: NetName=GND Pin=P2-14
+Added Pin To Net: NetName=3V3 Pin=P2-15
+Added Member To Class: ClassName=esquema Member=Component P1 Header 15
+Added Member To Class: ClassName=esquema Member=Component P2 Header 15

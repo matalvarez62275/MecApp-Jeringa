@@ -1,0 +1,17 @@
+Change Component Designator: OldDesignator=U? NewDesignator=U1
+Added Component: Designator=J5(SIP2)
+Added Component: Designator=J6(SIP2)
+Added Component: Designator=R3(RES400)
+Added Component: Designator=R4(RES400)
+Added Pin To Net: NetName=+5V Pin=J5-1
+Added Pin To Net: NetName=D34 Pin=J5-2
+Added Pin To Net: NetName=+5V Pin=J6-1
+Added Pin To Net: NetName=D35 Pin=J6-2
+Added Pin To Net: NetName=GND Pin=R3-1
+Added Pin To Net: NetName=D34 Pin=R3-2
+Added Pin To Net: NetName=GND Pin=R4-1
+Added Pin To Net: NetName=D35 Pin=R4-2
+Added Member To Class: ClassName=esquema Member=Component J5 CON2
+Added Member To Class: ClassName=esquema Member=Component J6 CON2
+Added Member To Class: ClassName=esquema Member=Component R3 RES
+Added Member To Class: ClassName=esquema Member=Component R4 RES

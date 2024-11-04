@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=VMOT Pin=U1-1
+Removed Pin From Net: NetName=GND Pin=U1-2
+Removed Pin From Net: NetName=+5V Pin=U1-3
+Removed Member From Class: ClassName=esquema Member=U1
+Added Component: Designator=U?(TO-220 V)
+Added Pin To Net: NetName=VMOT Pin=U?-1
+Added Pin To Net: NetName=GND Pin=U?-2
+Added Pin To Net: NetName=+5V Pin=U?-3
+Added Member To Class: ClassName=esquema Member=Component U? 78XX

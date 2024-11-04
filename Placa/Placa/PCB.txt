@@ -1,0 +1,12 @@
+Board Information Report
+Filename     : C:\Users\adm\OneDrive - ITBA\ITBA\5A1Q\Mecatrónica Aplicada\MecApp-Jeringa\Placa\Placa\PCB.PcbDoc
+Date         : 2/11/2024
+Time         : 19:29:57
+Time Elapsed : 00:00:00
+
+Routing Information
+    Routing completion, 100,00%
+    Connections, 49
+    Connections routed, 49
+    Connections remaining, 0
+count : 4
