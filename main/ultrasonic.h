@@ -6,6 +6,6 @@
 #define ECHO 25
 #define TRIG 26
 
-float dist_in_cm(void);
+float dist_in_mm(void);
 
 #endif /* ULTRASONIC_H */
