@@ -1,0 +1,3 @@
+Removed Pin From Net: NetName=EN Pin=J3-1
+Added Pin To Net: NetName=EN_DVR Pin=J3-1
+Added Net: Name=EN_DVR
