@@ -91,7 +91,6 @@ void loop() {
     handleEvent(key);
   }
   scrollMenu(currentState);
-  
 }
 
 void handleEvent(char key) {
@@ -135,7 +134,6 @@ void handleEvent(char key) {
       if (key == '#') {
         lcd.clear();
         lcd.print("Infusion started");
-        // stepper.start();
         start_infusion(flowRate, volume);
         delay(2000);
         currentState = MAIN_MENU;
