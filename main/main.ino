@@ -1,8 +1,17 @@
 #include <Keypad.h>
 #include <LiquidCrystal_I2C.h>
-#include "stateMachine.h"
 #include "menu.h"
 #include "ultrasonic.h"
+#include "actions.h"
+#include "InfraredSensor.h"
+
+#define LIMIT_SWITCH_BACK 34
+#define LIMIT_SWITCH_FRONT 35
+
+#define EMERGENCY_STOP 23
+
+#define LED_IR 2
+#define SENSOR_PIN A0
 
 const byte ROWS = 4; // Four rows
 const byte COLS = 4; // Four columns
@@ -15,7 +24,7 @@ char keys[ROWS][COLS] = {
 };
 
 // Connect to the column pinouts of the keypad
-byte colPins[COLS] = { 16, 4, 14, 13 };
+byte colPins[COLS] = { 16, 4, 13, 14 };
 
 // Connect to the row pinouts of the keypad
 byte rowPins[ROWS] = { 19, 18, 5, 17 };
@@ -27,18 +36,32 @@ Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 // Define the Stepper
-A4988 stepper(200, 32, 33);
+StepperDriver stepper(STEP, DIR, 0);
 
+// Define the INfrared Sensor
+InfraredSensor irSensor(LED_IR, SENSOR_PIN, 10);
+
+// Define the FSM
 State currentState = MAIN_MENU;
+int flowRate = 0;
+int32_t volume = 0;
+int syringe_length = 0;
+int syringe_diameter = 0;
 String inputBuffer = "";
 
+void IRAM_ATTR stop() {
+  stepper.stop();
+}
 
 void setup() {
   Serial.begin(115200);
+  Serial.println("Hello World!");
 
   // Stepper Driver pin config
-  pinMode(STEP, OUTPUT);
-  pinMode(DIR, OUTPUT);
+  stepper.begin();
+
+  // Infrared Sensor pin config
+  irSensor.begin();
 
   // Ultrasonic Sensor pin config
   pinMode(ECHO, INPUT);
@@ -47,14 +70,98 @@ void setup() {
   // LCD initialization
   lcd.init();
   lcd.backlight();
+  
+  // Limit Switch pin config
+  pinMode(LIMIT_SWITCH_BACK, INPUT_PULLDOWN);
+  attachInterrupt(digitalPinToInterrupt(LIMIT_SWITCH_BACK), stop, RISING);
+  
+  pinMode(LIMIT_SWITCH_FRONT, INPUT_PULLDOWN);  
+  attachInterrupt(digitalPinToInterrupt(LIMIT_SWITCH_FRONT), stop, RISING);
 
-  displayMenu(lcd, currentState, inputBuffer);
+  // Emergency
+  pinMode(EMERGENCY_STOP, INPUT);  
+  attachInterrupt(digitalPinToInterrupt(EMERGENCY_STOP), stop, FALLING);
+
+  displayMenu(currentState);
 }
 
-void loop() {
+void loop() { 
   char key = keypad.getKey();
   if (key) {
-    handleEvent(key, lcd, currentState, inputBuffer, stepper);
+    handleEvent(key);
   }
-  scrollMenu(lcd, currentState);
+  scrollMenu(currentState);
+  
+}
+
+void handleEvent(char key) {
+  switch (currentState) {
+    case MAIN_MENU:
+      if (key == '1') {
+        currentState = SET_FLOW_RATE;
+      } else if (key == '2') {
+        currentState = SET_VOLUME;
+      } else if (key == '3') {
+        currentState = START_INFUSION;
+      } else if (key == '4') {
+        currentState = SET_SYRINGE;
+      }
+      break;
+    case SET_FLOW_RATE:
+      if (key == '#') {
+        flowRate = inputBuffer.toInt();
+        inputBuffer = "";
+        currentState = MAIN_MENU;
+      } else if (key == '*') {
+        inputBuffer = "";
+        currentState = MAIN_MENU;
+      } else {
+        inputBuffer += key;
+      }
+      break;
+    case SET_VOLUME:
+      if (key == '#') {
+        volume = inputBuffer.toInt();
+        inputBuffer = "";
+        currentState = MAIN_MENU;
+      } else if (key == '*') {
+        inputBuffer = "";
+        currentState = MAIN_MENU;
+      } else {
+        inputBuffer += key;
+      }
+      break;
+    case START_INFUSION:
+      if (key == '#') {
+        lcd.clear();
+        lcd.print("Infusion started");
+        // stepper.start();
+        start_infusion(flowRate, volume);
+        delay(2000);
+        currentState = MAIN_MENU;
+      } else if (key == '*') {
+        currentState = MAIN_MENU;
+      }
+      break;
+    case SET_SYRINGE:
+      stepper.setSpeed(DEFAULT_SPEED);
+      Serial.println(key);
+      if(key == 'D') {
+        stepper.setSteps(-2000);
+        delay(200);
+        stepper.start();
+      } else if(key == 'A') {
+        stepper.setSteps(2000);
+        delay(200);
+        stepper.start();
+      } else if(key == '#') {
+        syringe_length = dist_in_mm();
+        syringe_diameter = irSensor.getDistanceMM();
+        Serial.println(syringe_diameter);
+        currentState = MAIN_MENU;
+      }
+      break;
+  }
+  
+  displayMenu(currentState);
 }

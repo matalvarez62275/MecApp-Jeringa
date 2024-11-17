@@ -2,14 +2,19 @@
 #define MENU_H
 
 #include <LiquidCrystal_I2C.h>
+#include <Arduino.h>
 
 // FSM states
 enum State {
   MAIN_MENU,
   SET_FLOW_RATE,
   SET_VOLUME,
-  START_INFUSION
+  START_INFUSION,
+  SET_SYRINGE
 };
+
+extern String inputBuffer;
+extern LiquidCrystal_I2C lcd;
 
 /**
  * @brief Displays the menu on the LCD screen.
@@ -21,7 +26,7 @@ enum State {
  * @param currentState The current state of the application, which determines the menu options to display.
  * @param inputBuffer A reference to a string that holds the current user input.
  */
-void displayMenu(LiquidCrystal_I2C& lcd, State currentState, String& inputBuffer);
+void displayMenu(State currentState);
 
 /**
  * @brief Scrolls through the menu displayed on the LCD.
@@ -32,6 +37,6 @@ void displayMenu(LiquidCrystal_I2C& lcd, State currentState, String& inputBuffer
  * @param lcd Reference to the LiquidCrystal_I2C object controlling the LCD.
  * @param currentState The current state of the menu, which determines the menu item to be displayed.
  */
-void scrollMenu(LiquidCrystal_I2C& lcd, State currentState);
+void scrollMenu(State currentState);
 
 #endif /* MENU_H */

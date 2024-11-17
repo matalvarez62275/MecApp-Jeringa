@@ -1,6 +1,6 @@
 #include "menu.h"
 
-void displayMenu(LiquidCrystal_I2C& lcd, State currentState, String& inputBuffer) {
+void displayMenu(State currentState) {
   lcd.clear();
   switch (currentState) {
     case MAIN_MENU:
@@ -11,7 +11,7 @@ void displayMenu(LiquidCrystal_I2C& lcd, State currentState, String& inputBuffer
     case SET_FLOW_RATE:
       lcd.print("Enter flow rate:");
       lcd.setCursor(12, 1);
-      lcd.print("ml/s");
+      lcd.print("ml/h");
       lcd.setCursor(0, 1);
       lcd.print(inputBuffer);
       break;
@@ -25,10 +25,17 @@ void displayMenu(LiquidCrystal_I2C& lcd, State currentState, String& inputBuffer
     case START_INFUSION:
       lcd.print("Press # to start");
       break;
+    case SET_SYRINGE:
+      lcd.print("<- A");
+      lcd.setCursor(12, 0);
+      lcd.print("D ->");
+      lcd.setCursor(2, 1);
+      lcd.print("# to confirm");
+      break;
   }
 }
 
-void scrollMenu(LiquidCrystal_I2C& lcd, State currentState) {
+void scrollMenu(State currentState) {
   static unsigned long lastScrollTime = 0;
   static int scrollIndex = 0;
   if (currentState == MAIN_MENU && millis() - lastScrollTime > 2000) {
@@ -49,9 +56,14 @@ void scrollMenu(LiquidCrystal_I2C& lcd, State currentState) {
       case 2:
         lcd.print("3.Start Infusion");
         lcd.setCursor(0, 1);
-        lcd.print(" ");
+        lcd.print("4.Set Syringe");
         break;
       case 3:
+        lcd.print("4.Set Syringe");
+        lcd.setCursor(0, 1);
+        lcd.print(" ");
+        break;      
+      case 4:
         lcd.print(" ");
         lcd.setCursor(0, 1);
         lcd.print("1.Set Flow Rate");
